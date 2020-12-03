@@ -25,16 +25,23 @@ export interface Entry {
 export class PresentComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
   gif;
+  quote;
   presentationmode=false;
   gif_1 = require('../../../../assets/00.gif').default;
   gif_2 = require('../../../../assets/01.gif').default;
   gif_3 = require('../../../../assets/02.gif').default;
   gif_4 = require('../../../../assets/03.gif').default;
+  quote1="As we look ahead into the next century, leaders will be those who empower others.";
+  quote2="You can speak well if your tongue can deliver the message of your heart.” -John Ford";
+  quote3="Be sincere, be brief, be seated.” -Franklin D. Roosevelt";
+  quote4="If you're presenting yourself with confidence, you can pull off pretty much anything.";
+
+
+
+
   arrow_black=require('../../../../assets/arrow_black.png').default;
   arrow_white=require('../../../../assets/arrow_white.png').default;
-  entries: Entry[] = [
-    { id: '', created: new Date(new Date().getTime()) }
-  ];
+  entries: Entry[] = [];
   newId: string;
 
   constructor(private changeDetector: ChangeDetectorRef) {
@@ -45,23 +52,20 @@ export class PresentComponent implements OnInit {
     const val = Math.floor(Math.random() * 4) + 1 ;
     if(val===1){
       this.gif=this.gif_1;
+      this.quote=this.quote1;
     }else if(val===2){
       this.gif=this.gif_2;
+      this.quote=this.quote2;
     }else if(val===3){
       this.gif=this.gif_3;
+      this.quote=this.quote3;
     }
     else{
       this.gif=this.gif_4;
+      this.quote=this.quote4;
   }
   this.newId = 'first';
-    
-    interval(1000).subscribe(() => {
-      if (!this.changeDetector['destroyed']) {
-        this.changeDetector.detectChanges();
-      }
-    });
 
-    this.changeDetector.detectChanges();
  }
 
   ngAfterViewInit() {
@@ -71,6 +75,14 @@ export class PresentComponent implements OnInit {
 
     present(){  
       this.presentationmode=true;
+      this.entries = [{ id: '', created: new Date(new Date().getTime()) }];
+      interval(1000).subscribe(() => {
+        if (!this.changeDetector['destroyed']) {
+          this.changeDetector.detectChanges();
+        }
+      });
+  
+      this.changeDetector.detectChanges();
     }
 
     getElapsedTime(entry: Entry): TimeSpan {        
