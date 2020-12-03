@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {Router} from '@angular/router';
 
 import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
-
+import { SocketService } from '../../../core/socket/socket.service';
 @Component({
   selector: 'anms-connect',
   templateUrl: './connect.component.html',
@@ -19,7 +19,7 @@ export class ConnectComponent implements OnInit {
   public input5;
   public input6;
   @ViewChild('firstInput') firstInput: ElementRef;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private socketService:SocketService) {}
 
 
   ngOnInit() {
@@ -90,12 +90,16 @@ console.log(this.firstInput);
 
   connect(){
     if(this.input1 && this.input2 && this.input3 && this.input4 && this.input5 && this.input6){
+      const code = `${this.input1}${this.input2}${this.input3}${this.input4}${this.input5}${this.input6}`;
+      this.socketService.connectToSocket(code);
+    
       alert('connecting...');
       this.router.navigateByUrl('/present');
     }else{
       alert('Wooops, please enter the 6 digits');
     }
   }
+
 
 
 
