@@ -1,4 +1,6 @@
+import { ElementRef, ViewChild } from '@angular/core';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {Router} from '@angular/router';
 
 import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
 
@@ -10,16 +12,24 @@ import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
 })
 export class ConnectComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
-  releaseButler = require('../../../../assets/release-butler.png').default;
   public input1;
   public input2;
   public input3;
   public input4;
   public input5;
   public input6;
-  constructor() {}
+  @ViewChild('firstInput') firstInput: ElementRef;
+  constructor(private router: Router) {}
 
-  ngOnInit() {}
+
+  ngOnInit() {
+console.log(this.firstInput);
+  }
+
+
+  ngAfterViewInit() {
+    this.firstInput.nativeElement.focus();
+    }
 
   keytab(e){
     e.preventDefault();
@@ -80,7 +90,8 @@ export class ConnectComponent implements OnInit {
 
   connect(){
     if(this.input1 && this.input2 && this.input3 && this.input4 && this.input5 && this.input6){
-      alert('connect');
+      alert('connecting...');
+      this.router.navigateByUrl('/present');
     }else{
       alert('Wooops, please enter the 6 digits');
     }

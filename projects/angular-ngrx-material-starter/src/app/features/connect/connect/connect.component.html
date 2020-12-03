@@ -17,7 +17,7 @@
 
       <div class="code-input">
           <div class="code-input-inner">
-          <input type="text" maxlength="1" (keyup)="keytab($event)" [(ngModel)]="input1">
+          <input type="text" maxlength="1" (keyup)="keytab($event)" #firstInput [(ngModel)]="input1">
           <input type="text" maxlength="1" (keyup)="keytab($event)" [(ngModel)]="input2">
           <input type="text" maxlength="1" (keyup)="keytab($event)" [(ngModel)]="input3">
           <input type="text" maxlength="1" (keyup)="keytab($event)" [(ngModel)]="input4">

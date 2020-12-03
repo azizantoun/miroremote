@@ -1,0 +1,77 @@
+<div class="background">
+  
+    <div class="container" *ngIf="!presentationmode">
+      <div>
+      <div class="logo-wrappper">
+        <img src="https://miro.com/static/images/layout/footer/mr-footer-1/footer-logo.svg?cbh=4ea473632763c4d09f06016a9f154477">
+        <span>Get it started!</span>
+      </div>
+    <h1>Greenroom</h1>
+    <div class="quote">
+      Being cocky and being confident is two different things. They run the same line, but it’s a thin line. You gotta know the difference.
+    </div>
+    <div class="gif">
+      <img [src]="gif">
+    </div>
+    </div>
+
+      <div class="actions">
+        
+         
+        <a mat-raised-button class="actions-main white" (click)="present()" [ngClass]="routeAnimationsElements">
+          Present
+        </a>
+    
+
+
+
+      </div>
+
+    </div>
+
+
+
+
+    <div class="container" *ngIf="presentationmode">
+      <div>
+      <div class="timer-container">
+    
+            <ng-container *ngFor="let entry of entries">
+            <span *ngIf="getElapsedTime(entry) as elapsed">
+              {{elapsed.hours}} : {{elapsed.minutes}} : {{elapsed.seconds}} 
+            </span>
+          </ng-container>
+  
+        </div>
+        <div class="slide-index">
+          Current: Slide 6 of 33
+        </div>
+      </div>
+      <div class="presenter-notes">
+        Creating a better version of ourselves every day. Every dayfor us is an opportunity to become better as a company and as people. We learn constantly, improving our professional and personal skills, advance business processes, and never stop.
+
+True Miro team member behaves like this:
+
+• Invests time into learningand development
+• Shares knowledge and experience
+• Is not afraid of mistakes, understands that they are partof the learning process
+• Continuously improves everything: product, team processes, oneself. Not just researches but executes
+
+      </div>
+
+      <div class="controls">
+        <div class="prev" (click)="prev()">
+          <div class="inner">
+              <p>Prev</p>
+              <p><img [src]="arrow_black" class="arr-black"><img [src]="arrow_white" class="arr-white"></p>
+          </div>
+        </div>
+        <div class="next">
+        <div class="inner" (click)="next()">
+          <p>Next</p>
+          <p><img [src]="arrow_black" class="arr-black"><img [src]="arrow_white" class="arr-white"></p>
+      </div>
+    </div>
+      </div>
+  </div>
+</div>

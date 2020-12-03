@@ -18,6 +18,11 @@ const routes: Routes = [
       import('./features/connect/connect.module').then((m) => m.ConnectModule)
   },
   {
+    path: 'present',
+    loadChildren: () =>
+      import('./features/present/present.module').then((m) => m.PresentModule)
+  },
+  {
     path: 'feature-list',
     loadChildren: () =>
       import('./features/feature-list/feature-list.module').then(
