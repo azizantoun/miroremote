@@ -1,0 +1,42 @@
+<div class="background">
+  
+    <div class="container">
+      <div>
+      <div class="logo-wrappper">
+        <img src="https://miro.com/static/images/layout/footer/mr-footer-1/footer-logo.svg?cbh=4ea473632763c4d09f06016a9f154477">
+        <span>Get it started!</span>
+        <br/>
+        <span class="top-notice">Enter the passcode to connect your device with a presentation</span>
+      </div>
+
+      <!-- <p>1. Get the Miro Remote App
+        Chrome extension</p> -->
+    
+    </div>
+
+
+      <div class="code-input">
+          <div class="code-input-inner">
+          <input type="text" maxlength="1" (keyup)="keytab($event)" [(ngModel)]="input1">
+          <input type="text" maxlength="1" (keyup)="keytab($event)" [(ngModel)]="input2">
+          <input type="text" maxlength="1" (keyup)="keytab($event)" [(ngModel)]="input3">
+          <input type="text" maxlength="1" (keyup)="keytab($event)" [(ngModel)]="input4">
+          <input type="text" maxlength="1" (keyup)="keytab($event)" [(ngModel)]="input5">
+          <input type="text" maxlength="1" (keyup)="keytab($event)" [(ngModel)]="input6">
+        </div>
+      </div>
+
+      <div class="actions">
+        
+         
+        <a mat-raised-button class="actions-main white" (click)="connect()" [ngClass]="routeAnimationsElements">
+          Connect
+        </a>
+    
+
+
+
+      </div>
+
+    </div>
+</div>
