@@ -117,21 +117,21 @@ input{
   -webkit-appearance: none;
   appearance: none;
   background: #000;
+  color: #FFFFFF;
   border: none;
   outline: none;
-  margin: 5px;
-  -ms-progress-appearance: none;
+  margin: 2px;
   background-color: none;
   border-bottom: 1px solid grey;
-  width: 40px;
+  width: 50px;
   height: 50px;
   text-align: center;
-  font-size: 50px;
-  padding-bottom: 10px;
-  color: #FFF;
+  font-size: 30px;
   border-radius: 0;
-  -webkit-text-fill-color: #FFF;
-  opacity: 1; /* required on iOS */
+  -webkit-text-fill-color: FFF;
+   -webkit-opacity: 1; 
+   color: FFF;
+   background: none;
 }
   }
   
