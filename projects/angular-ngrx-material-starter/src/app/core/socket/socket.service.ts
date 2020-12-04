@@ -14,6 +14,7 @@ import { environment as env } from '../../../environments/environment';
 export class SocketService {
   private code;
   private stompClient;
+  private notes;
   constructor(
     
   ) {}
@@ -29,8 +30,8 @@ export class SocketService {
    this.stompClient = Stomp.over(socket);
     this.stompClient.connect({}, function (frame) {
         console.log("connected");
-        _this.stompClient.subscribe(`/topic/${code}/extension`, function (greeting) {
-                console.log(greeting);
+        _this.stompClient.subscribe(`/topic/${code}/mobile`, function (greeting) {
+                _this.readMessage(greeting);
         });
     });
 }
@@ -39,5 +40,19 @@ export class SocketService {
     this.stompClient.send(`/topic/${this.code}/extension`, {}, message);
   }
 
+  
+  readMessage(msg){
+    const message = JSON.parse(msg.body);
+
+    if(message){
+      if(message.notes){
+        this.notes=message.notes;
+      } 
+    } 
+  }
+
+  renderNotes(){
+    return this.notes;
+  }
 
 }

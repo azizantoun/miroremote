@@ -77,7 +77,7 @@ export class PresentComponent implements OnInit {
     present(){  
       this.presentationmode=true;
       this.socketService.sendSocketMessage(JSON.stringify({'command': 'present'}));
-      
+      // this.socketService.sendSocketMessage(JSON.stringify({'command': 'getnotes'}));
 
       this.entries = [{ id: '', created: new Date(new Date().getTime()) }];
       interval(1000).subscribe(() => {
@@ -123,6 +123,4 @@ export class PresentComponent implements OnInit {
     prev(){
       this.socketService.sendSocketMessage(JSON.stringify({'command': 'previous'}));
     }
-
-
 }
