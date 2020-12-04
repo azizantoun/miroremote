@@ -27,6 +27,7 @@ export class PresentComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
   gif;
   quote;
+  activeSlide=1;
   presentationmode=false;
   gif_1 = require('../../../../assets/00.gif').default;
   gif_2 = require('../../../../assets/01.gif').default;
@@ -117,10 +118,14 @@ export class PresentComponent implements OnInit {
 
     next(){
       this.socketService.sendSocketMessage(JSON.stringify({'command': 'next'}));
+      this.activeSlide++;
     }
-
 
     prev(){
       this.socketService.sendSocketMessage(JSON.stringify({'command': 'previous'}));
+      if(this.activeSlide!==1){
+        this.activeSlide--;
+      }
     }
+
 }
