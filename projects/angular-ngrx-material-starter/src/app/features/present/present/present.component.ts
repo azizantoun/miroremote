@@ -3,6 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { interval } from 'rxjs';
 
 import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
+import { SocketService } from '../../../core/socket/socket.service';
 
 
 export interface TimeSpan {
@@ -44,7 +45,7 @@ export class PresentComponent implements OnInit {
   entries: Entry[] = [];
   newId: string;
 
-  constructor(private changeDetector: ChangeDetectorRef) {
+  constructor(private changeDetector: ChangeDetectorRef,private socketService: SocketService) {
 
   }
 
@@ -75,6 +76,9 @@ export class PresentComponent implements OnInit {
 
     present(){  
       this.presentationmode=true;
+      this.socketService.sendSocketMessage(JSON.stringify({'command': 'present'}));
+      
+
       this.entries = [{ id: '', created: new Date(new Date().getTime()) }];
       interval(1000).subscribe(() => {
         if (!this.changeDetector['destroyed']) {
@@ -112,12 +116,12 @@ export class PresentComponent implements OnInit {
     }
 
     next(){
-      alert("next")
+      this.socketService.sendSocketMessage(JSON.stringify({'command': 'next'}));
     }
 
 
     prev(){
-      alert("prev")
+      this.socketService.sendSocketMessage(JSON.stringify({'command': 'previous'}));
     }
 
 

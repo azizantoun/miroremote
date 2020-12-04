@@ -12,6 +12,8 @@ import { environment as env } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class SocketService {
+  private code;
+  private stompClient;
   constructor(
     
   ) {}
@@ -19,16 +21,23 @@ export class SocketService {
  
     connectToSocket(code) {
     // //If connected,return
+    this.code=code;
+    let _this=this;
     console.log("Connecting to socket");
-    var socket = new SockJS('http://194.37.81.135:8080/snowflakes');
+    var socket = new SockJS('https://tf.testmiro.com/snowflakes');
     console.log('socket--->', socket);
-   const  stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
+   this.stompClient = Stomp.over(socket);
+    this.stompClient.connect({}, function (frame) {
         console.log("connected");
-        stompClient.subscribe(`/topic/${code}/mobile`, function (greeting) {
+        _this.stompClient.subscribe(`/topic/${code}/extension`, function (greeting) {
                 console.log(greeting);
         });
     });
-
 }
+
+  sendSocketMessage(message){
+    this.stompClient.send(`/topic/${this.code}/extension`, {}, message);
+  }
+
+
 }
